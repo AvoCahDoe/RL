@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bellman Strategy Improvement — Discounted Policy Iteration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Bellman Strategy Improvement (Discounted)</h1>
+    <p class="hint">Enter transitions as CSV: <code>state,action,next_state,prob,reward</code>. Probabilities per <code>(state,action)</code> must sum to 1.</p>
+
+    <div class="controls">
+      <label>Gamma (0 &lt; γ &lt; 1): <input id="gammaInput" type="number" step="0.01" min="0" max="0.999" value="0.5" /></label>
+      <label>Max Iterations: <input id="maxIterInput" type="number" min="1" value="50" /></label>
+      <button id="loadSample">Load Example</button>
+      <button id="compute">Run Policy Iteration</button>
+    </div>
+
+    <textarea id="csvInput" rows="10" placeholder="state,action,next_state,prob,reward\n1,a,1,0.5,2\n1,a,2,0.5,1\n1,b,2,1.0,0.2\n2,a,2,0.5,0\n2,a,1,0.5,0\n2,b,2,1.0,0.3"></textarea>
+
+    <div id="error" class="error" style="display:none"></div>
+
+    <h2>Iterations</h2>
+    <div id="iterations" class="iterations"></div>
+
+    <h2>Summary</h2>
+    <div id="summary" class="results-grid">
+      <div>
+        <h3>Optimal values V*(s)</h3>
+        <div id="value"></div>
+      </div>
+      <div>
+        <h3>Optimal policy π*(a|s)</h3>
+        <div id="policy"></div>
+      </div>
+      <div>
+        <h3>Iterations</h3>
+        <div id="iterCount"></div>
+      </div>
+      <div>
+        <h3>Gamma</h3>
+        <div id="gammaOut"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

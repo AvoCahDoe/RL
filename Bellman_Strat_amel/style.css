@@ -11,18 +11,18 @@ body {
   margin: 24px auto;
   padding: 0 16px 40px;
 }
-img{
-  width: 80%;
-}
+
 h1 { margin-bottom: 10px; }
 h2 { margin-top: 24px; }
 h3 { margin-top: 16px; }
+h4 { margin: 10px 0; }
 
 .hint { color: #555; }
 
-.controls { margin: 12px 0; }
+.controls { margin: 12px 0; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.controls label { display: inline-flex; align-items: center; gap: 6px; }
 .controls button {
-  margin-right: 8px;
+  margin-left: 4px;
   background: #2563eb;
   color: white;
   border: none;
@@ -63,7 +63,7 @@ textarea#csvInput {
   padding: 12px;
 }
 
-/* Tables for vectors/policies */
+/* Tables for vectors/policies/matrices */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -75,36 +75,19 @@ textarea#csvInput {
 }
 .table th { background: #f3f4f6; }
 
-/* Visualization */
-.viz-controls {
-  margin-top: 8px;
+.iterations {
   display: flex;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
 }
-.viz-controls select { padding: 6px 8px; }
-.checkbox-label { display: flex; align-items: center; gap: 6px; }
 
-.viz-container {
-  margin-top: 12px;
+.iteration-block {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  padding: 8px;
-  min-height: 420px;
+  padding: 12px;
 }
 
-svg.mdp-graph {
-  width: 100%;
-  height: 400px;
-}
-
-.node circle { fill: #eef2ff; stroke: #3b82f6; stroke-width: 2px; }
-.node text { font-size: 12px; fill: #111827; }
-.edge { stroke: #6b7280; stroke-width: 1.5px; fill: none; }
-.edge-label { font-size: 11px; fill: #374151; }
-.legend {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #374151;
+.matrix, .vector, .qlog {
+  margin-top: 8px;
 }
