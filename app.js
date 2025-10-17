@@ -191,20 +191,22 @@ function policyIteration(model) {
 }
 
 function formatVector(states, vec, decimals = 6) {
-  const obj = {};
-  states.forEach((s, i) => { obj[s] = Number(vec[i].toFixed(decimals)); });
-  return JSON.stringify(obj, null, 2);
+  let html = '<table class="data"><thead><tr><th>État</th><th>Valeur</th></tr></thead><tbody>';
+  states.forEach((s, i) => { html += `<tr><td>${s}</td><td>${Number(vec[i].toFixed(decimals))}</td></tr>`; });
+  html += '</tbody></table>';
+  return html;
 }
 
 function formatPolicy(states, policy) {
-  const obj = {};
-  states.forEach(s => { obj[s] = policy.get(s); });
-  return JSON.stringify(obj, null, 2);
+  let html = '<table class="data"><thead><tr><th>État</th><th>Action optimale</th></tr></thead><tbody>';
+  states.forEach(s => { html += `<tr><td>${s}</td><td>${policy.get(s)}</td></tr>`; });
+  html += '</tbody></table>';
+  return html;
 }
 
 function loadSample() {
   const sample = [
-    'state,action,next_state,prob,reward',
+    'etat,action,etat_suivant,proba,gain',
     '1,a,1,0.5,1',
     '1,a,2,0.5,1',
     '1,b,2,1.0,2',
@@ -227,10 +229,10 @@ function compute() {
     // Gain vector V(s): equal to g for each state in communicating classes
     const V = Array(states.length).fill(g);
     document.getElementById('gstar').textContent = g.toFixed(6);
-    document.getElementById('gainVector').textContent = formatVector(states, V);
-    document.getElementById('biasVector').textContent = formatVector(states, h);
-    document.getElementById('stationary').textContent = formatVector(states, d);
-    document.getElementById('policy').textContent = formatPolicy(states, policy);
+    document.getElementById('gainVector').innerHTML = formatVector(states, V);
+    document.getElementById('biasVector').innerHTML = formatVector(states, h);
+    document.getElementById('stationary').innerHTML = formatVector(states, d);
+    document.getElementById('policy').innerHTML = formatPolicy(states, policy);
   } catch (e) {
     errorEl.hidden = false;
     errorEl.textContent = e.message || String(e);

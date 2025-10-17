@@ -1,58 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MDP Average Gain (LP-equivalent via Policy Iteration)</title>
+  <title>MDP – Gain moyen optimal</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Average Gain MDP Solver</h1>
-    <p>Enter transitions as CSV: <code>state,action,next_state,prob,reward</code>. Probabilities per (state,action) must sum to 1.</p>
+    <h1>Résolveur MDP (Gain moyen optimal)</h1>
+    <p>Saisissez les transitions au format CSV : <code>etat,action,etat_suivant,proba,gain</code>. Les probabilités pour chaque (etat, action) doivent sommer à 1.</p>
 
     <div class="controls">
-      <button id="loadSample">Load Sample</button>
-      <button id="compute">Compute Optimal</button>
+      <button id="loadSample">Charger l’exemple</button>
+      <button id="compute">Calculer l’optimum</button>
     </div>
 
-    <textarea id="csv" rows="12" placeholder="state,action,next_state,prob,reward"></textarea>
+    <textarea id="csv" rows="12" placeholder="etat,action,etat_suivant,proba,gain"></textarea>
 
     <div id="error" class="error" hidden></div>
 
     <div class="results">
-      <h2>Results</h2>
+      <h2>Résultats</h2>
       <div class="grid">
         <div>
-          <h3>Optimal Average Gain g*</h3>
-          <pre id="gstar">-</pre>
+          <h3>Gain moyen optimal g*</h3>
+          <div id="gstar" class="mono">-</div>
         </div>
         <div>
-          <h3>Gain Vector V(s)</h3>
-          <pre id="gainVector">-</pre>
+          <h3>Vecteur de gain V(s)</h3>
+          <div id="gainVector">-</div>
         </div>
         <div>
-          <h3>Bias Vector h(s)</h3>
-          <pre id="biasVector">-</pre>
+          <h3>Vecteur de biais h(s)</h3>
+          <div id="biasVector">-</div>
         </div>
         <div>
-          <h3>Stationary Distribution d(s)</h3>
-          <pre id="stationary">-</pre>
+          <h3>Distribution stationnaire d(s)</h3>
+          <div id="stationary">-</div>
         </div>
       </div>
 
-      <h3>Optimal Policy π*(a|s)</h3>
-      <pre id="policy">-</pre>
+      <h3>Politique optimale π*(a|s)</h3>
+      <div id="policy">-</div>
     </div>
 
     <details>
-      <summary>Method</summary>
-      <p>This computes the optimal average gain using Howard's policy iteration, which is equivalent to the LP formulation under standard conditions. It returns:</p>
+      <summary>Méthode</summary>
+      <p>La solution utilise l’itération de politique (Howard) pour le gain moyen, équivalente au PL sous hypothèses standard. Elle fournit :</p>
       <ul>
-        <li><b>g*</b>: optimal long-run average reward</li>
-        <li><b>V(s)</b>: average gain per start state (equals g* in communicating MDPs)</li>
-        <li><b>h(s)</b>: bias (relative value) vector</li>
-        <li><b>d(s)</b>: stationary distribution under π*</li>
+        <li><b>g*</b> : gain long terme optimal</li>
+        <li><b>V(s)</b> : gain moyen depuis chaque état (égal à g* pour les MDP communicants)</li>
+        <li><b>h(s)</b> : biais (valeur relative)</li>
+        <li><b>d(s)</b> : distribution stationnaire sous π*</li>
       </ul>
     </details>
   </div>

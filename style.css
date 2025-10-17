@@ -9,5 +9,9 @@ textarea { width: 100%; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco
 .error { background: #ffe5e5; color: #800; padding: 8px 12px; border-radius: 6px; margin-top: 8px; }
 .results { margin-top: 18px; }
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-pre { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 10px; overflow-x: auto; }
-details { margin-top: 20px; }
+pre, .mono { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 10px; overflow-x: auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace; }
+
+table.data { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+table.data th, table.data td { border-bottom: 1px solid #eee; padding: 8px 10px; text-align: left; }
+table.data th { background: #f0f3ff; font-weight: 600; }
+table.data tr:last-child td { border-bottom: none; }
