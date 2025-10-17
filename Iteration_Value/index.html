@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDP — Discounted Value Iteration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>MDP — Discounted Value Iteration</h1>
+
+    <p class="hint">Enter transitions in CSV: <code>state,action,next_state,prob,reward</code>. Probabilities per <code>(state,action)</code> must sum to 1.</p>
+
+    <div class="controls">
+      <label style="margin-right:8px;">
+        Criterion:
+        <select id="criterion">
+          <option value="discounted" selected>Discounted (Value Iteration)</option>
+          <option value="average">Average Gain (Policy Iteration)</option>
+        </select>
+      </label>
+      <label style="margin-right:8px;">
+        Gamma:
+        <input id="gamma" type="number" value="0.95" min="0" max="0.999" step="0.01" />
+      </label>
+      <label style="margin-right:8px;">
+        Theta:
+        <input id="theta" type="number" value="1e-8" step="1e-8" />
+      </label>
+      <label style="margin-right:8px;">
+        Max Iter:
+        <input id="maxIter" type="number" value="10000" min="1" />
+      </label>
+      <button id="loadSample">Load Sample</button>
+      <button id="compute">Run</button>
+    </div>
+
+    <textarea id="csvInput" rows="10" placeholder="state,action,next_state,prob,reward\ns0,go,s1,0.8,0\ns0,go,s0,0.2,-0.2\ns0,stay,s0,1.0,-0.05\ns1,go,s2,0.9,1.0\ns1,go,s0,0.1,0.0\ns1,stay,s1,1.0,-0.05\ns2,stay,s2,1.0,0.0\ns2,go,s2,1.0,0.0"></textarea>
+
+    <div id="error" class="error" style="display:none"></div>
+
+    <h2>Results</h2>
+    <div class="results-grid">
+      <div id="iterGroup" style="display:none;">
+        <h3>Iterations</h3>
+        <div id="iterations"></div>
+      </div>
+      <div id="gainGroup" style="display:none;">
+        <h3>Average gain g*</h3>
+        <div id="gain"></div>
+      </div>
+      <div id="valueGroup">
+        <h3>Optimal values V*(s)</h3>
+        <div id="value"></div>
+      </div>
+      <div id="biasGroup" style="display:none;">
+        <h3>Bias vector h(s)</h3>
+        <div id="bias"></div>
+      </div>
+      <div id="distGroup" style="display:none;">
+        <h3>Stationary distribution d(s)</h3>
+        <div id="dist"></div>
+      </div>
+      <div id="policyGroup">
+        <h3>Optimal policy π*(a|s)</h3>
+        <div id="policy"></div>
+      </div>
+    </div>
+
+    <h2>MDP Visualization</h2>
+    <div class="viz-controls">
+      <label for="actionFilter">Filter by action:</label>
+      <select id="actionFilter">
+        <option value="__ALL__">All</option>
+      </select>
+      <label class="checkbox-label">
+        <input type="checkbox" id="policyOnly" />
+        Show policy-only edges
+      </label>
+    </div>
+    <div id="vizContainer" class="viz-container"></div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
