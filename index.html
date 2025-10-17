@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MDP Average Gain (LP-equivalent via Policy Iteration)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Average Gain MDP Solver</h1>
+    <p>Enter transitions as CSV: <code>state,action,next_state,prob,reward</code>. Probabilities per (state,action) must sum to 1.</p>
+
+    <div class="controls">
+      <button id="loadSample">Load Sample</button>
+      <button id="compute">Compute Optimal</button>
+    </div>
+
+    <textarea id="csv" rows="12" placeholder="state,action,next_state,prob,reward"></textarea>
+
+    <div id="error" class="error" hidden></div>
+
+    <div class="results">
+      <h2>Results</h2>
+      <div class="grid">
+        <div>
+          <h3>Optimal Average Gain g*</h3>
+          <pre id="gstar">-</pre>
+        </div>
+        <div>
+          <h3>Gain Vector V(s)</h3>
+          <pre id="gainVector">-</pre>
+        </div>
+        <div>
+          <h3>Bias Vector h(s)</h3>
+          <pre id="biasVector">-</pre>
+        </div>
+        <div>
+          <h3>Stationary Distribution d(s)</h3>
+          <pre id="stationary">-</pre>
+        </div>
+      </div>
+
+      <h3>Optimal Policy π*(a|s)</h3>
+      <pre id="policy">-</pre>
+    </div>
+
+    <details>
+      <summary>Method</summary>
+      <p>This computes the optimal average gain using Howard's policy iteration, which is equivalent to the LP formulation under standard conditions. It returns:</p>
+      <ul>
+        <li><b>g*</b>: optimal long-run average reward</li>
+        <li><b>V(s)</b>: average gain per start state (equals g* in communicating MDPs)</li>
+        <li><b>h(s)</b>: bias (relative value) vector</li>
+        <li><b>d(s)</b>: stationary distribution under π*</li>
+      </ul>
+    </details>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
